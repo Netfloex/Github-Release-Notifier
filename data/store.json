@@ -1,12 +1,18 @@
 {
 	"repositories": [
 		{
-			"id": "MDEwOlJlcG9zaXRvcnkzODI1OTcxNjk=",
-			"nameWithOwner": "Netfloex/Nginx"
+			"id": "R_kgDOHDs10w",
+			"nameWithOwner": "Netfloex/Spel",
+			"releasesNotified": [
+				"RE_kwDOHDs1084DwPLj"
+			]
 		},
 		{
-			"id": "R_kgDOHDs10w",
-			"nameWithOwner": "Netfloex/Spel"
+			"id": "MDEwOlJlcG9zaXRvcnkzODI1OTcxNjk=",
+			"nameWithOwner": "Netfloex/Nginx",
+			"releasesNotified": [
+				"RE_kwDOFs34Mc4D_oVD"
+			]
 		}
 	]
 }

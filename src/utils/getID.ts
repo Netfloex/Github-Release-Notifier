@@ -1,8 +1,7 @@
 import { getQueryPath } from "@utils/getQueryPath"
-import { githubToken } from "@utils/settings"
+import { query } from "@utils/graphql"
 import { store } from "@utils/store"
 
-import { graphql } from "@octokit/graphql"
 import chalk from "chalk"
 import { readFile } from "fs-extra"
 
@@ -23,14 +22,11 @@ export const getID = async (nameWithOwner: string): Promise<string> => {
 
 	const {
 		repository: { id },
-	} = await graphql(await readFile(getQueryPath("getID"), "utf-8"), {
-		headers: {
-			authorization: `token ${githubToken}`,
-		},
-
+	} = await query(await readFile(getQueryPath("getID"), "utf-8"), {
 		owner,
 		name,
 	})
+
 	console.log(
 		chalk`ID for {dim ${owner}}/{dim ${name}} is {dim {bold ${id}}}`,
 	)

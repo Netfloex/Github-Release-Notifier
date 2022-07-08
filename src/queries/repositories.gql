@@ -1,16 +1,17 @@
-query Nginx($owner: String!, $name: String!) {
-	repository(owner: $owner, name: $repo) {
-		id
-		name
-		nameWithOwner
-		releases(first: 10) {
-			nodes {
-				id
-				name
-				isLatest
-				description
-				publishedAt
-				url
+query ReposReleases($ids: [ID!]!, $count: Int!) {
+	nodes(ids: $ids) {
+		... on Repository {
+			id
+			name
+			nameWithOwner
+			releases(last: $count) {
+				nodes {
+					id
+					name
+					description
+					publishedAt
+					url
+				}
 			}
 		}
 	}
