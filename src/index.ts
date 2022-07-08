@@ -2,9 +2,10 @@ import "dotenv/config"
 
 import { getID } from "@utils/getID"
 import { getReleases } from "@utils/getReleases"
-import { repositories } from "@utils/settings"
+import { discordWebhooks, repositories } from "@utils/settings"
 import { store } from "@utils/store"
 
+import axios from "axios"
 import chalk from "chalk"
 
 const main = async (): Promise<void> => {
@@ -16,7 +17,7 @@ const main = async (): Promise<void> => {
 	)
 
 	const repos = await getReleases(ids)
-	repos.forEach((repo) => {
+	repos.forEach(async (repo) => {
 		store.data.repositories ??= []
 		const latestRelease = repo.releases.nodes[0]
 
@@ -38,9 +39,26 @@ const main = async (): Promise<void> => {
 
 		cachedRepo.releasesNotified.push(latestRelease.id)
 		console.log(
-			chalk`{bold NEW RELEASE} on {bold ${repo.nameWithOwner}}`,
-			latestRelease,
+			chalk`New Release on {bold ${repo.nameWithOwner}} {green ${latestRelease.name}}`,
 		)
+
+		await axios.post(discordWebhooks[0], {
+			embeds: [
+				{
+					title: latestRelease.name,
+					description: latestRelease.description,
+					url: latestRelease.url,
+					color: 3309752,
+					author: {
+						name: repo.nameWithOwner,
+						icon_url: repo.owner.avatarUrl,
+						url: repo.url,
+					},
+				},
+			],
+			username: latestRelease.author.name,
+			avatar_url: latestRelease.author.avatarUrl,
+		})
 	})
 
 	await store.write()

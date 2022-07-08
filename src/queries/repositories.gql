@@ -4,6 +4,10 @@ query ReposReleases($ids: [ID!]!, $count: Int!) {
 			id
 			name
 			nameWithOwner
+			url
+			owner {
+				avatarUrl
+			}
 			releases(last: $count) {
 				nodes {
 					id
@@ -11,6 +15,10 @@ query ReposReleases($ids: [ID!]!, $count: Int!) {
 					description
 					publishedAt
 					url
+					author {
+						avatarUrl
+						name
+					}
 				}
 			}
 		}
