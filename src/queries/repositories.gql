@@ -1,0 +1,17 @@
+query Nginx($owner: String!, $name: String!) {
+	repository(owner: $owner, name: $repo) {
+		id
+		name
+		nameWithOwner
+		releases(first: 10) {
+			nodes {
+				id
+				name
+				isLatest
+				description
+				publishedAt
+				url
+			}
+		}
+	}
+}
