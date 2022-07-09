@@ -19,6 +19,9 @@ export const getID = async (nameWithOwner: string): Promise<string> => {
 
 	const [owner, name] = nameWithOwner.split("/")
 	console.log(chalk`{yellow Getting ID for {dim ${owner}}/{dim ${name}}...}`)
+	if (!owner || !name) {
+		throw new Error(chalk`There is no {dim /} in {dim ${nameWithOwner}}`)
+	}
 
 	const {
 		repository: { id },

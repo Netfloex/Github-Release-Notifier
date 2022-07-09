@@ -1,0 +1,12 @@
+version: "3"
+services:
+    grn:
+        build: .
+        container_name: grn
+        environment:
+            GITHUB_TOKEN: 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
+            REPOSITORIES: |
+                Netfloex/Nginx
+                Netfloex/Spel
+                Mautrix
+            DISCORD_WEBHOOKS: https://discord.com/api/webhooks/995141152732885063/5Yacj0Sgxsj-ylBjrhKrhCfbgmCT64rkQFRLTp6pDXMFgAtVOXc4D0eg8T3nGpeMgGRy
