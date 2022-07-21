@@ -8,7 +8,7 @@ import { readFile } from "fs-extra"
 export const getID = async (nameWithOwner: string): Promise<string> => {
 	store.data.repositories ??= []
 	const cachedRepo = store.data.repositories.find(
-		(r) => r.nameWithOwner == nameWithOwner,
+		(r) => r.nameWithOwner.toLowerCase() == nameWithOwner.toLowerCase(),
 	)
 	if (cachedRepo) {
 		console.log(
