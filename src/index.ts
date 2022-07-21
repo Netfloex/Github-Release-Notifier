@@ -67,7 +67,9 @@ const main = async (): Promise<void> => {
 const started = Date.now()
 main()
 	.then(() => {
-		console.log(chalk`{green Done} in ${Date.now() - started}s`)
+		console.log(
+			chalk`{green Done} in {yellow ${(Date.now() - started) / 1000}s}`,
+		)
 	})
 	.catch((error) => {
 		console.log(chalk.red("There was an error"))
