@@ -18,6 +18,7 @@ query ReposReleases($ids: [ID!]!, $count: Int!) {
 					author {
 						avatarUrl
 						name
+						login
 					}
 				}
 			}

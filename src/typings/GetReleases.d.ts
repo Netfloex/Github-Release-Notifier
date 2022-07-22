@@ -8,6 +8,7 @@ interface ReleaseNode {
 	author: {
 		avatarUrl: string
 		name: string
+		login: string
 	}
 }
 

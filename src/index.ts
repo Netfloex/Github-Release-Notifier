@@ -56,11 +56,11 @@ const main = async (): Promise<void> => {
 					},
 				},
 			],
-			username: latestRelease.author.name,
+			username: latestRelease.author.name ?? latestRelease.author.login,
 			avatar_url: latestRelease.author.avatarUrl,
 		})
+		console.log(latestRelease)
 	})
-
 	await store.write()
 }
 
