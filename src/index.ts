@@ -40,7 +40,6 @@ const main = async (): Promise<void> => {
 				)
 			}
 
-			cachedRepo.releasesNotified.push(latestRelease.id)
 			console.log(
 				chalk`New Release on {bold ${repo.nameWithOwner}} {green ${latestRelease.name}}`,
 			)
@@ -49,7 +48,11 @@ const main = async (): Promise<void> => {
 				embeds: [
 					{
 						title: latestRelease.name,
-						description: latestRelease.description,
+						description:
+							latestRelease.description.length >= 2000
+								? latestRelease.description.slice(0, 1900) +
+								  "\n--- This message has been trimmed ---"
+								: latestRelease.description,
 						url: latestRelease.url,
 						color: 3309752,
 						author: {
@@ -63,9 +66,11 @@ const main = async (): Promise<void> => {
 					latestRelease.author.name ?? latestRelease.author.login,
 				avatar_url: latestRelease.author.avatarUrl,
 			})
+
+			cachedRepo.releasesNotified.push(latestRelease.id)
+			await store.write()
 		}),
 	)
-	await store.write()
 }
 
 const started = Date.now()
@@ -77,5 +82,9 @@ main()
 	})
 	.catch((error) => {
 		console.log(chalk.red("There was an error"))
-		throw error
+		console.error(error)
+		if (axios.isAxiosError(error)) {
+			console.log("Axios Response:")
+			console.error(error.response!.data)
+		}
 	})
