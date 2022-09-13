@@ -10,7 +10,9 @@ export const getConfig = async (): Promise<
 	z.output<typeof configSchema> | false
 > => {
 	if (!(await pathExists(configPath))) {
-		console.log(chalk`The config file could not be found: {dim configPath}`)
+		console.log(
+			chalk`The config file could not be found: {dim ${configPath}}`,
+		)
 
 		return false
 	}
