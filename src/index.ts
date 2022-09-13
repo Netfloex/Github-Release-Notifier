@@ -60,6 +60,8 @@ const main = async (): Promise<void> => {
 					latestRelease.description ??= ""
 
 					for (const hook of category.hooks) {
+						console.log(latestRelease)
+
 						await axios.post(hook, {
 							embeds: [
 								{
@@ -79,6 +81,7 @@ const main = async (): Promise<void> => {
 										icon_url: repo.owner.avatarUrl,
 										url: repo.url,
 									},
+									timestamp: latestRelease.publishedAt,
 								},
 							],
 							username:
