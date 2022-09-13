@@ -1,7 +1,7 @@
 interface ReleaseNode {
 	id: string
 	name: string
-	description: string
+	description?: string
 	publishedAt: string
 	url: string
 

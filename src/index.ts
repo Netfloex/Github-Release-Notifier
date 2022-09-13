@@ -44,6 +44,8 @@ const main = async (): Promise<void> => {
 				chalk`New Release on {bold ${repo.nameWithOwner}} {green ${latestRelease.name}}`,
 			)
 
+			latestRelease.description ??= ""
+
 			await axios.post(discordWebhooks[0], {
 				embeds: [
 					{
