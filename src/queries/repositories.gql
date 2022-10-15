@@ -8,7 +8,10 @@ query ReposReleases($ids: [ID!]!, $count: Int!) {
 			owner {
 				avatarUrl
 			}
-			releases(last: $count) {
+			releases(
+				first: $count
+				orderBy: { field: CREATED_AT, direction: DESC }
+			) {
 				nodes {
 					id
 					name

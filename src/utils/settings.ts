@@ -3,7 +3,7 @@ import { join, resolve } from "path"
 const githubTokenTemp = process.env.GITHUB_TOKEN!
 
 if (!githubTokenTemp) {
-	throw new Error("Missing environment variables")
+	throw new Error("Missing Github Token")
 }
 
 export const githubToken = githubTokenTemp

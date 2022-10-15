@@ -13,5 +13,6 @@ export const getReleases = async (ids: string[]): Promise<RepositoryNode[]> => {
 			count: 1,
 		},
 	)
+
 	return nodes
 }
