@@ -3,6 +3,7 @@ import "dotenv/config"
 import { getConfig } from "@utils/getConfig"
 import { getID } from "@utils/getID"
 import { getReleases } from "@utils/getReleases"
+import { http } from "@utils/http"
 import { store } from "@utils/store"
 
 import axios from "axios"
@@ -62,7 +63,7 @@ const main = async (): Promise<void> => {
 					for (const hook of category.hooks) {
 						console.log(latestRelease)
 
-						await axios.post(hook, {
+						await http.post(hook, {
 							embeds: [
 								{
 									title: latestRelease.name,
